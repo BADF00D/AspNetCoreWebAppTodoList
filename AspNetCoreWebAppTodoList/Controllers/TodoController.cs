@@ -27,19 +27,23 @@ namespace AspNetCoreWebAppTodoList.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(List<TodoItem>), 200)]
         public ActionResult<List<TodoItem>> GetAll()
         {
             return _context.TodoItems.ToList();
         }
 
         [HttpGet("{id}", Name = "GetTodo")]
-        public ActionResult<TodoItem> GetById([FromQuery]long id)
+        [ProducesResponseType(typeof(TodoItem), 200)]
+        [ProducesResponseType(404)]
+        public ActionResult<TodoItem> GetById([FromRoute]long id)
         {
             var item = _context.TodoItems.Find(id);
             return item ?? (ActionResult<TodoItem>) NotFound();
         }
 
         [HttpPost]
+        [ProducesResponseType(201)]
         public IActionResult Create([FromBody, Required]TodoItem item)
         {
             _context.TodoItems.Add(item);
@@ -49,7 +53,9 @@ namespace AspNetCoreWebAppTodoList.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update([FromQuery]long id, [FromBody, Required]TodoItem item)
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult Update([FromRoute]long id, [FromBody, Required]TodoItem item)
         {
             var todo = _context.TodoItems.Find(id);
             if (todo == null) return NotFound();
@@ -63,6 +69,8 @@ namespace AspNetCoreWebAppTodoList.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
         public IActionResult Delete([FromQuery]long id)
         {
             var todo = _context.TodoItems.Find(id);
