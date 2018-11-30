@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Net.Sockets;
 using AspNetCoreWebAppTodoList.Model;
 using Microsoft.AspNetCore.Mvc;
 
@@ -40,7 +40,7 @@ namespace AspNetCoreWebAppTodoList.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody]TodoItem item)
+        public IActionResult Create([FromBody, Required]TodoItem item)
         {
             _context.TodoItems.Add(item);
             _context.SaveChanges();
@@ -49,7 +49,7 @@ namespace AspNetCoreWebAppTodoList.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update([FromQuery]long id, [FromBody]TodoItem item)
+        public IActionResult Update([FromQuery]long id, [FromBody, Required]TodoItem item)
         {
             var todo = _context.TodoItems.Find(id);
             if (todo == null) return NotFound();
