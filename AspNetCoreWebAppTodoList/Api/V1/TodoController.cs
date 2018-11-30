@@ -4,13 +4,14 @@ using System.Linq;
 using AspNetCoreWebAppTodoList.Model;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AspNetCoreWebAppTodoList.Controllers
+namespace AspNetCoreWebAppTodoList.api.V1
 {
     /// <summary>
     /// Controller for manipulation ToDo-Items.
     /// </summary>
     [ApiController]
-    [Route("api/todo")]
+    [ApiExplorerSettings(GroupName = "v1")]
+    [Route("api/v1/todo")]
     public class TodoController : ControllerBase
     {
         private readonly TodoContext _context;

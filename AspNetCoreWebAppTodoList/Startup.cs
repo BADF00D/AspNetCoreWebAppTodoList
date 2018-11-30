@@ -17,9 +17,16 @@ namespace AspNetCoreWebAppTodoList
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info {Title = "My api", Version = "v1"});
+                c.SwaggerDoc("v1", new Info
+                {
+                    Title = "ToDo-Api",
+                    Version = "v1",
+                    Description = "API for interacting with ToDo-Items"
+                });
                 var filePath = Path.Combine(System.AppContext.BaseDirectory, "AspNetCoreWebAppTodoList.xml");
                 c.IncludeXmlComments(filePath);
+                c.DescribeAllEnumsAsStrings();
+                c.DescribeStringEnumsInCamelCase();
             });
         }
 

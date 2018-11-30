@@ -4,18 +4,18 @@
         <name>AspNetCoreWebAppTodoList</name>
     </assembly>
     <members>
-        <member name="T:AspNetCoreWebAppTodoList.Controllers.TodoController">
+        <member name="T:AspNetCoreWebAppTodoList.api.V1.TodoController">
             <summary>
             Controller for manipulation ToDo-Items.
             </summary>
         </member>
-        <member name="M:AspNetCoreWebAppTodoList.Controllers.TodoController.GetAll">
+        <member name="M:AspNetCoreWebAppTodoList.api.V1.TodoController.GetAll">
             <summary>
             Gets all ToDo-Items.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:AspNetCoreWebAppTodoList.Controllers.TodoController.GetById(System.Int64)">
+        <member name="M:AspNetCoreWebAppTodoList.api.V1.TodoController.GetById(System.Int64)">
             <summary>
             Gets single ToDo-Item by its Id.
             </summary>
@@ -24,7 +24,7 @@
             <response code="404">Returns ToDo-Item with given Id not found.</response>
             <returns></returns>
         </member>
-        <member name="M:AspNetCoreWebAppTodoList.Controllers.TodoController.Create(AspNetCoreWebAppTodoList.Model.TodoItem)">
+        <member name="M:AspNetCoreWebAppTodoList.api.V1.TodoController.Create(AspNetCoreWebAppTodoList.Model.TodoItem)">
             <summary>
             Creates a ToDo-Item.
             </summary>
@@ -33,7 +33,7 @@
             <response code="400">Invalid or missing properties.</response>
             <returns></returns>
         </member>
-        <member name="M:AspNetCoreWebAppTodoList.Controllers.TodoController.Update(System.Int64,AspNetCoreWebAppTodoList.Model.TodoItem)">
+        <member name="M:AspNetCoreWebAppTodoList.api.V1.TodoController.Update(System.Int64,AspNetCoreWebAppTodoList.Model.TodoItem)">
             <summary>
             Updates a ToDo-Item.
             </summary>
@@ -44,7 +44,7 @@
             <response code="404">ToDo-Items with given Id not found.</response>
             <returns></returns>
         </member>
-        <member name="M:AspNetCoreWebAppTodoList.Controllers.TodoController.Delete(System.Int64)">
+        <member name="M:AspNetCoreWebAppTodoList.api.V1.TodoController.Delete(System.Int64)">
             <summary>
             Delete a ToDo-Item.
             </summary>
