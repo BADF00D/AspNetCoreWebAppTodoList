@@ -4,24 +4,33 @@
         <name>AspNetCoreWebAppTodoList</name>
     </assembly>
     <members>
+        <member name="T:AspNetCoreWebAppTodoList.Controllers.TodoController">
+            <summary>
+            Controller for manipulation ToDo-Items.
+            </summary>
+        </member>
         <member name="M:AspNetCoreWebAppTodoList.Controllers.TodoController.GetAll">
             <summary>
-            Gets all Todo-Items.
+            Gets all ToDo-Items.
             </summary>
             <returns></returns>
         </member>
         <member name="M:AspNetCoreWebAppTodoList.Controllers.TodoController.GetById(System.Int64)">
             <summary>
-            Gets single Todo-Item by its Id.
+            Gets single ToDo-Item by its Id.
             </summary>
-            <param name="id">It from Todo-Items to get.</param>
+            <param name="id">It from ToDo-Items to get.</param>
+            <response code="200">Returns ToDo-Item.</response>
+            <response code="404">Returns ToDo-Item with given Id not found.</response>
             <returns></returns>
         </member>
         <member name="M:AspNetCoreWebAppTodoList.Controllers.TodoController.Create(AspNetCoreWebAppTodoList.Model.TodoItem)">
             <summary>
-            Creates a Todo-Item.
+            Creates a ToDo-Item.
             </summary>
-            <param name="item">Todo-Items to create.</param>
+            <param name="item">ToDo-Items to create.</param>
+            <response code="201">ToDo-Item created successfully.</response>
+            <response code="400">Invalid or missing properties.</response>
             <returns></returns>
         </member>
         <member name="M:AspNetCoreWebAppTodoList.Controllers.TodoController.Update(System.Int64,AspNetCoreWebAppTodoList.Model.TodoItem)">
@@ -30,6 +39,9 @@
             </summary>
             <param name="id">Id of ToDo-Item to update.</param>
             <param name="item">Data of ToDo-Item.</param>
+            <response code="204">ToDo-Items updated successfully.</response>
+            <response code="400">Invalid or missing properties.</response>
+            <response code="404">ToDo-Items with given Id not found.</response>
             <returns></returns>
         </member>
         <member name="M:AspNetCoreWebAppTodoList.Controllers.TodoController.Delete(System.Int64)">
@@ -37,6 +49,8 @@
             Delete a ToDo-Item.
             </summary>
             <param name="id">Id of ToDo-Item to delete.</param>
+            <response code="204">ToDo-Items deleted successfully.</response>
+            <response code="404">ToDo-Items with given Id not found.</response>
             <returns></returns>
         </member>
         <member name="T:AspNetCoreWebAppTodoList.Model.TodoItem">
