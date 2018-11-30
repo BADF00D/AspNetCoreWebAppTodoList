@@ -33,14 +33,14 @@ namespace AspNetCoreWebAppTodoList.Controllers
         }
 
         [HttpGet("{id}", Name = "GetTodo")]
-        public ActionResult<TodoItem> GetById(long id)
+        public ActionResult<TodoItem> GetById([FromQuery]long id)
         {
             var item = _context.TodoItems.Find(id);
             return item ?? (ActionResult<TodoItem>) NotFound();
         }
 
         [HttpPost]
-        public IActionResult Create(TodoItem item)
+        public IActionResult Create([FromBody]TodoItem item)
         {
             _context.TodoItems.Add(item);
             _context.SaveChanges();
@@ -49,7 +49,7 @@ namespace AspNetCoreWebAppTodoList.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(long id, TodoItem item)
+        public IActionResult Update([FromQuery]long id, [FromBody]TodoItem item)
         {
             var todo = _context.TodoItems.Find(id);
             if (todo == null) return NotFound();
@@ -63,7 +63,7 @@ namespace AspNetCoreWebAppTodoList.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(long id)
+        public IActionResult Delete([FromQuery]long id)
         {
             var todo = _context.TodoItems.Find(id);
             if (todo == null) return NotFound();
