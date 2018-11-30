@@ -48,5 +48,18 @@ namespace AspNetCoreWebAppTodoList.Controllers
             return CreatedAtRoute("GetTodo", new {id = item.Id}, item);
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Update(long id, TodoItem item)
+        {
+            var todo = _context.TodoItems.Find(id);
+            if (todo == null) return NotFound();
+
+            todo.IsComplete = item.IsComplete;
+            todo.Name = item.Name;
+
+            _context.TodoItems.Update(todo);
+            _context.SaveChanges();
+            return NoContent();
+        }
     }
 }
