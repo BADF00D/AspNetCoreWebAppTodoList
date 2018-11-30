@@ -10,7 +10,7 @@ namespace AspNetCoreWebAppTodoList.Controllers
     /// Controller for manipulation ToDo-Items.
     /// </summary>
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/todo")]
     public class TodoController : ControllerBase
     {
         private readonly TodoContext _context;
