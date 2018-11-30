@@ -26,6 +26,10 @@ namespace AspNetCoreWebAppTodoList.Controllers
             _context.SaveChanges();
         }
 
+        /// <summary>
+        /// Gets all ToDo-Items.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(typeof(List<TodoItem>), 200)]
         public ActionResult<List<TodoItem>> GetAll()
@@ -33,6 +37,11 @@ namespace AspNetCoreWebAppTodoList.Controllers
             return _context.TodoItems.ToList();
         }
 
+        /// <summary>
+        /// Gets single ToDo-Item by its Id.
+        /// </summary>
+        /// <param name="id">It from ToDo-Items to get.</param>
+        /// <returns></returns>
         [HttpGet("{id}", Name = "GetTodo")]
         [ProducesResponseType(typeof(TodoItem), 200)]
         [ProducesResponseType(404)]
@@ -42,6 +51,11 @@ namespace AspNetCoreWebAppTodoList.Controllers
             return item ?? (ActionResult<TodoItem>) NotFound();
         }
 
+        /// <summary>
+        /// Creates a ToDo-Item.
+        /// </summary>
+        /// <param name="item">ToDo-Items to create.</param>
+        /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(201)]
         public IActionResult Create([FromBody, Required]TodoItem item)
@@ -52,6 +66,12 @@ namespace AspNetCoreWebAppTodoList.Controllers
             return CreatedAtRoute("GetTodo", new {id = item.Id}, item);
         }
 
+        /// <summary>
+        /// Updates a ToDo-Item.
+        /// </summary>
+        /// <param name="id">Id of ToDo-Item to update.</param>
+        /// <param name="item">Data of ToDo-Item.</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
@@ -68,6 +88,11 @@ namespace AspNetCoreWebAppTodoList.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Delete a ToDo-Item.
+        /// </summary>
+        /// <param name="id">Id of ToDo-Item to delete.</param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]

@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AspNetCoreWebAppTodoList</name>
+    </assembly>
+    <members>
+        <member name="M:AspNetCoreWebAppTodoList.Controllers.TodoController.GetAll">
+            <summary>
+            Gets all Todo-Items.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AspNetCoreWebAppTodoList.Controllers.TodoController.GetById(System.Int64)">
+            <summary>
+            Gets single Todo-Item by its Id.
+            </summary>
+            <param name="id">It from Todo-Items to get.</param>
+            <returns></returns>
+        </member>
+        <member name="M:AspNetCoreWebAppTodoList.Controllers.TodoController.Create(AspNetCoreWebAppTodoList.Model.TodoItem)">
+            <summary>
+            Creates a Todo-Item.
+            </summary>
+            <param name="item">Todo-Items to create.</param>
+            <returns></returns>
+        </member>
+        <member name="M:AspNetCoreWebAppTodoList.Controllers.TodoController.Update(System.Int64,AspNetCoreWebAppTodoList.Model.TodoItem)">
+            <summary>
+            Updates a ToDo-Item.
+            </summary>
+            <param name="id">Id of ToDo-Item to update.</param>
+            <param name="item">Data of ToDo-Item.</param>
+            <returns></returns>
+        </member>
+        <member name="M:AspNetCoreWebAppTodoList.Controllers.TodoController.Delete(System.Int64)">
+            <summary>
+            Delete a ToDo-Item.
+            </summary>
+            <param name="id">Id of ToDo-Item to delete.</param>
+            <returns></returns>
+        </member>
+        <member name="T:AspNetCoreWebAppTodoList.Model.TodoItem">
+            <summary>
+            Todo Item
+            </summary>
+        </member>
+        <member name="P:AspNetCoreWebAppTodoList.Model.TodoItem.Id">
+            <summary>
+            Internal id
+            </summary>
+        </member>
+        <member name="P:AspNetCoreWebAppTodoList.Model.TodoItem.Name">
+            <summary>
+            Title of ToDo-Item
+            </summary>
+        </member>
+        <member name="P:AspNetCoreWebAppTodoList.Model.TodoItem.IsComplete">
+            <summary>
+            Defines if todo is done or not.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,5 +1,8 @@
 ﻿namespace AspNetCoreWebAppTodoList.Model
 {
+    /// <summary>
+    /// Todo Item
+    /// </summary>
     public class TodoItem
     {
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.IO;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,8 +15,12 @@ namespace AspNetCoreWebAppTodoList
             //todo what is the difference between AddMvc and AddMvcCore
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddSwaggerGen(c => 
-                c.SwaggerDoc("v1",new Info{ Title = "My api", Version = "v1"}));
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info {Title = "My api", Version = "v1"});
+                var filePath = Path.Combine(System.AppContext.BaseDirectory, "AspNetCoreWebAppTodoList.xml");
+                c.IncludeXmlComments(filePath);
+            });
         }
 
         public void Configure(IApplicationBuilder appBuilder)
