@@ -61,5 +61,16 @@ namespace AspNetCoreWebAppTodoList.Controllers
             _context.SaveChanges();
             return NoContent();
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(long id)
+        {
+            var todo = _context.TodoItems.Find(id);
+            if (todo == null) return NotFound();
+
+            _context.TodoItems.Remove(todo);
+            _context.SaveChanges();
+            return NoContent();
+        }
     }
 }
