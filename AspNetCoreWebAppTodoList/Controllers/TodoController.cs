@@ -39,5 +39,14 @@ namespace AspNetCoreWebAppTodoList.Controllers
             return item ?? (ActionResult<TodoItem>) NotFound();
         }
 
+        [HttpPost]
+        public IActionResult Create(TodoItem item)
+        {
+            _context.TodoItems.Add(item);
+            _context.SaveChanges();
+
+            return CreatedAtRoute("GetTodo", new {id = item.Id}, item);
+        }
+
     }
 }
