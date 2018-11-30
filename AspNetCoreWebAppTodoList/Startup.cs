@@ -34,7 +34,11 @@ namespace AspNetCoreWebAppTodoList
         {
             appBuilder.UseMvc();
             appBuilder.UseSwagger(o => o.RouteTemplate = "/api-docs/{documentName}/swagger.json");
-            appBuilder.UseSwaggerUI(o => o.SwaggerEndpoint("/api-docs/v1/swagger.json", "My API v1"));
+            appBuilder.UseSwaggerUI(o =>
+            {
+                o.RoutePrefix = "api-docs";
+                o.SwaggerEndpoint("/api-docs/v1/swagger.json", "My API v1");
+            });
         }
     }
 }
