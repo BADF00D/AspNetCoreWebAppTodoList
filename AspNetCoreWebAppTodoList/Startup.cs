@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using Castle.Windsor;
+using Castle.Windsor.MsDependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,14 +10,15 @@ using Swashbuckle.AspNetCore.Swagger;
 
 namespace AspNetCoreWebAppTodoList
 {
-    public class Startup
+    internal class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("TodoList"));
             //todo what is the difference between AddMvc and AddMvcCore
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info
@@ -28,6 +32,8 @@ namespace AspNetCoreWebAppTodoList
                 c.DescribeAllEnumsAsStrings();
                 c.DescribeStringEnumsInCamelCase();
             });
+
+            return WindsorRegistrationHelper.CreateServiceProvider(new WindsorContainer(), services);
         }
 
         public void Configure(IApplicationBuilder appBuilder)
