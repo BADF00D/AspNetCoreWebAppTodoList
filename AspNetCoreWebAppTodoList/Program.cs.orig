@@ -49,6 +49,12 @@ namespace AspNetCoreWebAppTodoList
             }
         }
 
+<<<<<<< Updated upstream
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseKestrel(options => options.ListenAnyIP(9999))
+                .UseStartup<Startup>();
+=======
         private static void StartService(Service service)
         {
             try
@@ -61,5 +67,6 @@ namespace AspNetCoreWebAppTodoList
                 throw;
             }
         }
+>>>>>>> Stashed changes
     }
 }
