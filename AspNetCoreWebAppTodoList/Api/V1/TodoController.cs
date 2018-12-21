@@ -13,7 +13,7 @@ namespace AspNetCoreWebAppTodoList.api.V1
     /// </summary>
     [ApiController]
     [ApiExplorerSettings(GroupName = "v1")]
-    [Route("api/v1/todo")]
+    [Route("api/v1/todos")]
     public class TodoController : ControllerBase
     {
         private readonly TodoContext _context;
