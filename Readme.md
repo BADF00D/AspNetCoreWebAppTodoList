@@ -8,3 +8,5 @@
 - Use TopShelf for Startup
 - BasicAuthentification
 - ✓ WindsorContainer
+- ✓ Use Kestrel
+- Log4Net
