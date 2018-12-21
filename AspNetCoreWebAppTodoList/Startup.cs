@@ -1,8 +1,10 @@
 ﻿using System;
 using System.IO;
+using AspNetCoreWebAppTodoList.Logging.Extensions;
 using Castle.Windsor;
 using Castle.Windsor.MsDependencyInjection;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,7 +20,7 @@ namespace AspNetCoreWebAppTodoList
             //todo what is the difference between AddMvc and AddMvcCore
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info
@@ -36,8 +38,9 @@ namespace AspNetCoreWebAppTodoList
             return WindsorRegistrationHelper.CreateServiceProvider(new WindsorContainer(), services);
         }
 
-        public void Configure(IApplicationBuilder appBuilder)
+        public void Configure(IApplicationBuilder appBuilder, IHostingEnvironment env, Microsoft.Extensions.Logging.ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddLog4Net(Constants.Log4NetConfigFile);
             appBuilder.UseMvc();
             appBuilder.UseSwagger(o => o.RouteTemplate = "/api-docs/{documentName}/swagger.json");
             appBuilder.UseSwaggerUI(o =>

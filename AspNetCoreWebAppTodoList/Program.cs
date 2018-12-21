@@ -31,6 +31,7 @@ namespace AspNetCoreWebAppTodoList
                     h.SetDescription("REST interface for todo items.");
                     h.SetDisplayName("My Awesome REST-APi");
                     h.SetServiceName("My Awesome REST-APi");
+                    h.UseLog4Net(Constants.Log4NetConfigFile, true);
                 }
             );
             if (host == TopshelfExitCode.ServiceAlreadyRunning) Console.WriteLine("Service is already running");
