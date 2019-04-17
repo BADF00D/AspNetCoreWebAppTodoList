@@ -35,7 +35,9 @@ namespace AspNetCoreWebAppTodoList
                 c.DescribeStringEnumsInCamelCase();
             });
 
-            return WindsorRegistrationHelper.CreateServiceProvider(new WindsorContainer(), services);
+            var windsorContainer = new WindsorContainer();
+            windsorContainer.Install(new Installer());
+            return WindsorRegistrationHelper.CreateServiceProvider(windsorContainer, services);
         }
 
         public void Configure(IApplicationBuilder appBuilder, IHostingEnvironment env, Microsoft.Extensions.Logging.ILoggerFactory loggerFactory)

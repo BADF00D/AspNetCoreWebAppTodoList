@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 namespace AspNetCoreWebAppTodoList
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-    public class TodoContext : DbContext
+    public class TodoContext : DbContext, ITodoContext
 
     {
         public TodoContext(DbContextOptions<TodoContext> options) : base(options)
