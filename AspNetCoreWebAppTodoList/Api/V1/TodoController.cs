@@ -6,7 +6,7 @@ using AspNetCoreWebAppTodoList.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace AspNetCoreWebAppTodoList.api.V1
+namespace AspNetCoreWebAppTodoList.Api.V1
 {
     /// <summary>
     /// Controller for manipulation ToDo-Items.
@@ -16,19 +16,19 @@ namespace AspNetCoreWebAppTodoList.api.V1
     [Route("api/v1/todos")]
     public class TodoController : ControllerBase
     {
-        private readonly TodoContext _context;
+        private readonly ITodoContext _context;
 
-        public TodoController(TodoContext context)
+        public TodoController(ITodoContext context)
         {
             _context = context;
-            if (_context.TodoItems.Any()) return;
+            if (_context.Any() ) return;
 
             AddDummyData();
         }
 
         private void AddDummyData()
         {
-            _context.TodoItems.Add(new TodoItem {Name = "Items1"});
+            _context.Add(new TodoItem {Name = "Items1"});
             _context.SaveChanges();
         }
 
@@ -40,7 +40,7 @@ namespace AspNetCoreWebAppTodoList.api.V1
         [ProducesResponseType(typeof(List<TodoItem>), 200)]
         public async Task<ActionResult<List<TodoItem>>> GetAll()
         {
-            return await _context.TodoItems.ToListAsync();
+            return await _context.ToListAsync();
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace AspNetCoreWebAppTodoList.api.V1
         [ProducesResponseType(404)]
         public async Task<ActionResult<TodoItem>> GetById([FromRoute]long id)
         {
-            var item = await _context.TodoItems.FindAsync(id);
+            var item = await _context.FindAsync(id);
             return item ?? (ActionResult<TodoItem>) NotFound();
         }
 
@@ -70,7 +70,7 @@ namespace AspNetCoreWebAppTodoList.api.V1
         [ProducesResponseType(201)]
         public async Task<IActionResult> Create([FromBody, Required]TodoItem item)
         {
-            await _context.TodoItems.AddAsync(item);
+            await _context.AddAsync(item);
             await _context.SaveChangesAsync();
 
             return CreatedAtRoute("GetTodo", new {id = item.Id}, item);
@@ -90,13 +90,13 @@ namespace AspNetCoreWebAppTodoList.api.V1
         [ProducesResponseType(404)]
         public async Task<IActionResult> Update([FromRoute]long id, [FromBody, Required]TodoItem item)
         {
-            var todo = await _context.TodoItems.FindAsync(id);
+            var todo = await _context.FindAsync(id);
             if (todo == null) return NotFound();
 
             todo.IsComplete = item.IsComplete;
             todo.Name = item.Name;
 
-            _context.TodoItems.Update(todo);
+            _context.Update(todo);
             await _context.SaveChangesAsync();
             return NoContent();
         }
@@ -113,10 +113,10 @@ namespace AspNetCoreWebAppTodoList.api.V1
         [ProducesResponseType(404)]
         public async Task<IActionResult> Delete([FromRoute]long id)
         {
-            var todo = await _context.TodoItems.FindAsync(id);
+            var todo = await _context.FindAsync(id);
             if (todo == null) return NotFound();
 
-            _context.TodoItems.Remove(todo);
+            _context.Remove(todo);
             await _context.SaveChangesAsync();
             return NoContent();
         }

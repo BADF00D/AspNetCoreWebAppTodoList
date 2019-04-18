@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreWebAppTodoList", "AspNetCoreWebAppTodoList\AspNetCoreWebAppTodoList.csproj", "{DE03C70D-714B-4EB0-9F83-1C979D276973}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreWebAppTodoList", "AspNetCoreWebAppTodoList\AspNetCoreWebAppTodoList.csproj", "{DE03C70D-714B-4EB0-9F83-1C979D276973}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreWebAppTodoListTests", "AspNetCoreWebAppTodoListTests\AspNetCoreWebAppTodoListTests.csproj", "{3D045F7E-EFFC-4508-B08B-052BF12AC8BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{DE03C70D-714B-4EB0-9F83-1C979D276973}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE03C70D-714B-4EB0-9F83-1C979D276973}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE03C70D-714B-4EB0-9F83-1C979D276973}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D045F7E-EFFC-4508-B08B-052BF12AC8BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D045F7E-EFFC-4508-B08B-052BF12AC8BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D045F7E-EFFC-4508-B08B-052BF12AC8BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D045F7E-EFFC-4508-B08B-052BF12AC8BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

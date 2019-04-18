@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>X:\Eval\AspNetCoreWebAppTodoList\AspNetCoreWebAppTodoList\AspNetCoreWebAppTodoList.xml</DocumentationFile>
+    <DocumentationFile>C:\Git\AspNetCoreWebAppTodoList\AspNetCoreWebAppTodoList\AspNetCoreWebAppTodoList.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
