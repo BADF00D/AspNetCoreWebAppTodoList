@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using AspNetCoreWebAppTodoList.Context;
 using AspNetCoreWebAppTodoList.Logging.Extensions;
 using Castle.Windsor;
 using Castle.Windsor.MsDependencyInjection;
@@ -17,6 +18,7 @@ namespace AspNetCoreWebAppTodoList
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("TodoList"));
+            services.AddDbContext<VoltageContext>(opt => opt.UseInMemoryDatabase("Voltages"));
             //todo what is the difference between AddMvc and AddMvcCore
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
