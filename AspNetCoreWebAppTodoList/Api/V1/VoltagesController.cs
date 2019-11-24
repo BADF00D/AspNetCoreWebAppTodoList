@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Net;
 using System.Threading.Tasks;
 using AspNetCoreWebAppTodoList.Context;
 using AspNetCoreWebAppTodoList.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreWebAppTodoList.Api.V1
 {
+    [Authorize]
     [ApiController]
     [ApiExplorerSettings(GroupName = "v1")]
     [Route("api/v1/voltages")]

@@ -2,6 +2,8 @@
 using System.IO;
 using AspNetCoreWebAppTodoList.Context;
 using AspNetCoreWebAppTodoList.Logging.Extensions;
+using AspNetCoreWebAppTodoList.Utils;
+using Bazinga.AspNetCore.Authentication.Basic;
 using Castle.Windsor;
 using Castle.Windsor.MsDependencyInjection;
 using Microsoft.AspNetCore.Builder;
@@ -22,6 +24,9 @@ namespace AspNetCoreWebAppTodoList
             //todo what is the difference between AddMvc and AddMvcCore
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddAuthentication(BasicAuthenticationDefaults.AuthenticationScheme)
+                .AddBasicAuthentication<BasicAuthenticationVerifier>();
 
             services.AddSwaggerGen(c =>
             {
@@ -45,6 +50,7 @@ namespace AspNetCoreWebAppTodoList
         public void Configure(IApplicationBuilder appBuilder, IHostingEnvironment env, Microsoft.Extensions.Logging.ILoggerFactory loggerFactory)
         {
             loggerFactory.AddLog4Net(Constants.Log4NetConfigFile);
+            appBuilder.UseAuthentication();
             appBuilder.UseMvc();
             appBuilder.UseSwagger(o => o.RouteTemplate = "/api-docs/{documentName}/swagger.json");
             appBuilder.UseSwaggerUI(o =>
@@ -52,6 +58,8 @@ namespace AspNetCoreWebAppTodoList
                 o.RoutePrefix = "api-docs";
                 o.SwaggerEndpoint("/api-docs/v1/swagger.json", "My API v1");
             });
+
+            
         }
     }
 }
