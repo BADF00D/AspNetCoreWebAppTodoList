@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using AspNetCoreWebAppTodoList.Context;
@@ -43,12 +44,19 @@ namespace AspNetCoreWebAppTodoList.Api.V1
 
         [HttpPost]
         [ProducesResponseType(201)]
-        public async Task<IActionResult> Create([FromBody, Required] VoltageItem item)
+        public async Task<IActionResult> Create([FromBody, Required] TimedFloat[] items)
         {
-            await _context.AddAsync(item);
+            var voltageItems = items.Select(item => new VoltageItem
+            {
+                Timestamp = item.Timestamp.AddMilliseconds(item.OffsetInMillis),
+                Value = item.Value
+            }).ToArray();
+            
+
+            await _context.AddRangeAsync(voltageItems);
             await _context.SaveChangesAsync();
 
-            return CreatedAtRoute("GetVoltageItem", new {id = item.Id}, item);
+            return Ok();
         }
 
         [HttpGet("{id}", Name = "GetVoltageItem")]

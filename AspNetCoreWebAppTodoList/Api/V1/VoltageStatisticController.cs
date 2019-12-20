@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using AspNetCoreWebAppTodoList.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace AspNetCoreWebAppTodoList.Api.V1
 {
@@ -56,7 +55,7 @@ namespace AspNetCoreWebAppTodoList.Api.V1
                         Timestamp = currentTime,
                         Value = lastVoltage,
                     });
-                    currentTime += sampleInterval;
+                    currentTime += TimeSpan.FromHours(1);
                 }
 
                 return result;

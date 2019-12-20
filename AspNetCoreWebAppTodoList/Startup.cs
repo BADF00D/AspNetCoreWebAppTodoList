@@ -17,10 +17,28 @@ namespace AspNetCoreWebAppTodoList
 {
     internal class Startup
     {
+        private const string AllowLocalhostAndLive = "MyCorsPolicy";
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("TodoList"));
             services.AddDbContext<VoltageContext>(opt => opt.UseInMemoryDatabase("Voltages"));
+            services.AddCors(options =>
+            {
+                options.AddPolicy(AllowLocalhostAndLive,
+                    builder =>
+                    {
+                        builder.WithOrigins("https://gardening.get-it-working.com",
+                            "http://localhost:4200")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .AllowCredentials();
+                        //builder.AllowAnyMethod()
+                        //    .AllowAnyHeader()
+                        //    .AllowAnyOrigin();
+                        //.AllowCredentials();
+                    }
+                    );
+            });
             //todo what is the difference between AddMvc and AddMvcCore
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -50,6 +68,7 @@ namespace AspNetCoreWebAppTodoList
         public void Configure(IApplicationBuilder appBuilder, IHostingEnvironment env, Microsoft.Extensions.Logging.ILoggerFactory loggerFactory)
         {
             loggerFactory.AddLog4Net(Constants.Log4NetConfigFile);
+            appBuilder.UseCors(AllowLocalhostAndLive);
             appBuilder.UseAuthentication();
             appBuilder.UseMvc();
             appBuilder.UseSwagger(o => o.RouteTemplate = "/api-docs/{documentName}/swagger.json");

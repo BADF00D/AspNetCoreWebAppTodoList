@@ -12,6 +12,7 @@ namespace AspNetCoreWebAppTodoList.Context
     {
         bool Any();
         Task<EntityEntry<VoltageItem>> AddAsync(VoltageItem item);
+        Task AddRangeAsync(VoltageItem[] items);
         Task<List<VoltageItem>> ToListAsync();
         Task<VoltageItem> FindAsync(long id);
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken));
@@ -33,6 +34,11 @@ namespace AspNetCoreWebAppTodoList.Context
         public Task<EntityEntry<VoltageItem>> AddAsync(VoltageItem item)
         {
             return VoltageItems.AddAsync(item);
+        }
+
+        public Task AddRangeAsync(VoltageItem[] items)
+        {
+            return VoltageItems.AddRangeAsync(items);
         }
 
         public Task<List<VoltageItem>> ToListAsync()
